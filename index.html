@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Elegant Resume Builder | Create & Download PDF</title>
+    <!-- Google Fonts for clean typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-container">
+    <!-- LEFT: Form section -->
+    <div class="form-panel">
+        <h2 style="margin-bottom: 1rem; display: flex; gap: 8px;"><i class="fas fa-pen-fancy" style="color:#2c7da0;"></i> Build your Resume</h2>
+        <form id="resumeForm">
+            <!-- Personal details -->
+            <div class="form-group">
+                <label><i class="fas fa-user"></i> Full Name *</label>
+                <input type="text" id="fullName" placeholder="e.g., Sophia Martinez" value="Olivia Chen">
+                <div class="error-msg" id="nameError"></div>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-briefcase"></i> Professional Title</label>
+                <input type="text" id="jobTitle" placeholder="e.g., Frontend Developer" value="Senior Product Designer">
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Email *</label>
+                <input type="email" id="email" placeholder="hello@example.com" value="olivia.chen@creativestudio.com">
+                <div class="error-msg" id="emailError"></div>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-phone-alt"></i> Phone</label>
+                <input type="text" id="phone" placeholder="+1 234 567 890" value="+1 (415) 555-9876">
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-map-marker-alt"></i> Address / Location</label>
+                <input type="text" id="location" placeholder="City, Country" value="San Francisco, CA">
+            </div>
+
+            <!-- Profile picture (optional) -->
+            <div class="form-group">
+                <label><i class="fas fa-camera"></i> Profile Picture (optional, image URL or upload)</label>
+                <input type="file" id="profilePicUpload" accept="image/jpeg,image/png,image/jpg">
+                <small style="color:#5b6f88;">Upload image or paste URL below</small>
+                <input type="text" id="profilePicUrl" placeholder="Or paste image URL" style="margin-top: 8px;">
+            </div>
+            <hr class="form-divider">
+
+            <!-- Education dynamic -->
+            <label><i class="fas fa-graduation-cap"></i> Education</label>
+            <div id="educationListContainer">
+                <div class="dynamic-list" id="educationList">
+                    <!-- default entry will be populated by JS -->
+                </div>
+            </div>
+            <div class="inline-flex-group">
+                <div class="form-group"><input type="text" id="eduDegree" placeholder="Degree, e.g., B.A. Design"></div>
+                <div class="form-group"><input type="text" id="eduInstitution" placeholder="Institution"></div>
+                <div class="form-group"><input type="text" id="eduYear" placeholder="Year / Period"></div>
+                <button type="button" id="addEducationBtn" class="add-btn"><i class="fas fa-plus-circle"></i> Add</button>
+            </div>
+
+            <hr class="form-divider">
+            <!-- Experience dynamic -->
+            <label><i class="fas fa-briefcase"></i> Work Experience</label>
+            <div id="experienceListContainer">
+                <div class="dynamic-list" id="experienceList">
+                    <!-- default entries will be populated by JS -->
+                </div>
+            </div>
+            <div class="inline-flex-group">
+                <div class="form-group"><input type="text" id="expTitle" placeholder="Job title"></div>
+                <div class="form-group"><input type="text" id="expCompany" placeholder="Company"></div>
+                <div class="form-group"><input type="text" id="expDuration" placeholder="e.g., 2023 - present"></div>
+                <button type="button" id="addExperienceBtn" class="add-btn"><i class="fas fa-plus-circle"></i> Add</button>
+            </div>
+
+            <hr class="form-divider">
+            <div class="form-group">
+                <label><i class="fas fa-pencil-alt"></i> Summary / About</label>
+                <textarea id="summary" rows="3">Creative product designer with 5+ years of experience crafting human-centered digital experiences. Passionate about design systems and user empathy.</textarea>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-tags"></i> Skills (comma separated)</label>
+                <input type="text" id="skills" value="Figma, Adobe XD, User Research, Prototyping, HTML/CSS, React">
+            </div>
+
+            <button type="button" id="refreshPreviewBtn" class="add-btn" style="background:#2c7da0; color:white; width:100%; margin-top: 8px;"><i class="fas fa-sync-alt"></i> Update Preview</button>
+        </form>
+        <small style="display:block; margin-top: 15px; text-align:center;"><i class="fas fa-info-circle"></i> All changes reflect instantly, click Update or auto sync</small>
+    </div>
+
+    <!-- RIGHT: Resume Preview & Download -->
+    <div class="preview-panel">
+        <div class="preview-header">
+            <h2><i class="far fa-file-alt"></i> Live Resume Preview</h2>
+            <button id="downloadPDFBtn" class="btn-download"><i class="fas fa-download"></i> Download as PDF</button>
+        </div>
+        <div id="resumePreviewContainer" class="resume-card">
+            <!-- dynamic resume will be injected here -->
+            <div class="resume-inner" id="resumeContent">
+                <!-- JS will fill -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- External JS Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<!-- External JavaScript -->
+<script src="script.js"></script>
+</body>
+</html>
